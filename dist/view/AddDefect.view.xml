@@ -1,0 +1,81 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:s="sap.ui.comp.smartfield" xmlns="sap.m"
+	xmlns:u="sap.m.UploadCollectionParameter" xmlns:f="sap.ui.layout.form" xmlns:layout="sap.ui.layout"
+	controllerName="com.sap.revgrp.controller.AddDefect" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="AddDefect" title="{i18n>AddDefectList}">
+		<f:Form id="DefectRecord" editable="true" ariaLabelledBy="Title1">
+			<f:layout>
+				<f:ResponsiveGridLayout/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer id="AddDefectContainer" ariaLabelledBy="Title2">
+					<f:toolbar>
+						<Toolbar>
+							<Title id="Title2" text="Information" level="H5" titleStyle="H5"/>
+							<ToolbarSpacer/>
+						</Toolbar>
+					</f:toolbar>
+					<f:formElements>
+						<f:FormElement label="Characteristic">
+							<f:fields>
+								<Input value="{Merknr}" id="Characteristic" editable="false" width="400px"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Defect Line No">
+							<f:fields>
+								<Input value="{Fenum}" id="Fenum" editable="false" width="400px"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Operator">
+							<f:fields>
+								<Input value="{Pruefer}" width="400px" editable="false" id="Operation"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Defect">
+							<ComboBox id="DefectCodeSet" showSecondaryValues="true" width="400px" items="{ path: '/DefectCodeSet', sorter: {path: 'Code'} }"
+								selectionChange="OnSelectionDefectChanged">
+								<core:ListItem key="{Code}" text="{Kurztext}" additionalText="{Codegruppe}"/>
+							</ComboBox>
+						</f:FormElement>
+						<f:FormElement label="Defect Location">
+							<ComboBox id="DefectLocCodeSet" showSecondaryValues="true" width="400px" items="{ path: '/DefectLocCodeSet', sorter: {path: 'Code'} }"
+								selectionChange="OnSelectionLocationChanged">
+								<core:ListItem key="{Code}" text="{Kurztext}" additionalText="{Codegruppe}"/>
+							</ComboBox>
+						</f:FormElement>
+						<f:FormElement label="Quantity">
+							<f:fields>
+								<Input id="Quantity" type="Number" placeholder="Enter Quantity....." value="{DefectQty}" width="400px"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Comments">
+							<f:fields>
+								<Input id="Comments" placeholder="Enter Comments...." value="{Maschine}"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer ariaLabelledBy="Title2">
+					<f:formElements>
+						<f:FormElement>
+							<UploadCollection id="UploadCollection" tooltip="Upload your file to the local Server" multiple="false"
+								uploadUrl="/sap/opu/odata/sap/ZQM_INSPECTION_RESULTS_SRV/DefectResultSet(Fenum='{Fenum}',Prueflos='{Prueflos}',Werk='{Werk}',Vornr='{Vornr}',Aufnr='{Aufnr}',Matnr='{Matnr}',Merknr='{Merknr}')/Attachment"
+								numberOfAttachmentsText="Image Attachment" noDataText="Please attach defect image" items="{Attachment}" change="onChange" fileType="jpg,png"
+								typeMissmatch="onTypeMissmatch" uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts">
+								<items>
+									<UploadCollectionItem fileName="{Content}" mimeType="{mimeType}"></UploadCollectionItem>
+								</items>
+							</UploadCollection>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button id="SaveDefectData" text="Add" type="Accept" press="onSaveDefectButtonPressed"></Button>
+				<!--<Button id="Button" text="Upload Image" type="Emphasized" press="onStartUpload"></Button>-->
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

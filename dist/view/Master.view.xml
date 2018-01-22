@@ -1,0 +1,74 @@
+<mvc:View controllerName="com.sap.revgrp.controller.Master" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m"
+	xmlns:semantic="sap.m.semantic">
+	<semantic:MasterPage id="page" title="{masterView>/title}" navButtonPress="onNavBack" showNavButton="true">
+		<semantic:subHeader>
+			<Bar id="headerBar">
+				<contentLeft>
+					<SearchField id="searchField" showRefreshButton="{= !${device>/support/touch} }" tooltip="{i18n>masterSearchTooltip}" width="100%"
+						search="onSearch"></SearchField>
+				</contentLeft>
+				<contentRight>
+					<Button icon="sap-icon://camera" tooltip="Scan Bar code" press="ScanBarcode"/>
+				</contentRight>
+			</Bar>
+		</semantic:subHeader>
+		<PullToRefresh id="pullToRefresh" visible="{device>/support/touch}" refresh="onRefresh"/>
+		<semantic:content>
+			<FacetFilter id="FacetFilter" type="Light" visible="true" showReset="true" reset="onFacetFilterReset" showSummaryBar="true">
+				<lists>
+					<FacetFilterList title="{i18n>MASTER_FILTER_ORDERS}" id="BlockingOrdersFilter" key="FacetFilter_BlockingOrder" 
+						items="{ path: '/OrderSet', sorter: {path: 'Aufnr'} }" listClose="onFacetFilterOrderClose" listOpen="onFacetFilterOrderOpen">
+						<items>
+							<FacetFilterItem selected="false" key="{Aufnr}" text="{Aufnr}"/>
+						</items>
+					</FacetFilterList>
+					<FacetFilterList title="{i18n>MASTER_FILTER_WRKCENT}" id="BlockingWorkCenterFilter" key="{Arbpl}"
+						items="{ path: '/WorkCenterSet', sorter: {path: 'Ktext'} }" listClose="onFacetFilterWrkcentClose" listOpen="onFacetFilterWrkcentOpen">
+						<items>
+							<FacetFilterItem text="{Ktext}" key="{Arbpl}"/>
+						</items>
+					</FacetFilterList>
+					<FacetFilterList title="{i18n>MASTER_FILTER_MATNR}" id="BlockingMaterialFilter" key="FacetFilter_BlockingMaterial"
+						items="{ path: '/MaterialSet', sorter: {path: 'Maktx'} }" listClose="onFacetFilterMatnrClose" listOpen="onFacetFilterMatnrOpen">
+						<items>
+							<FacetFilterItem text="{Maktx}" key="{Matnr}"/>
+						</items>
+					</FacetFilterList>
+					<FacetFilterList title="{i18n>MASTER_FILTER_BATCHNR}" id="BlockingBatchFilter" key="FacetFilter_BlockingBatch"
+						items="{ path: '/BatchSet', sorter: {path: 'Charg'} }" listClose="onFacetFilterBatchnrClose" listOpen="onFacetFilterBatchnrOpen">
+						<items>
+							<FacetFilterItem text="{Charg}" key="{Charg}"/>
+						</items>
+					</FacetFilterList>
+				</lists>
+			</FacetFilter>
+			<!-- For client side filtering add this to the items attribute:  parameters: {operationMode: 'Client'}}" -->
+			<List id="list"
+				items="{ path: '/OpeninspectionlistSet', sorter: { path: 'Prueflos', descending: false }, groupHeaderFactory: '.createGroupHeader' }"
+				busyIndicatorDelay="{masterView>/delay}" noDataText="{masterView>/noDataText}"
+				mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="true" growingScrollToLoad="true"
+				updateFinished="onUpdateFinished" selectionChange="onSelectionChange">
+				<infoToolbar>
+					<Toolbar active="true" id="filterBar" visible="{masterView>/isFilterBarVisible}" press="onOpenViewSettings">
+						<Title id="filterBarLabel" text="{masterView>/filterBarLabel}"/>
+					</Toolbar>
+				</infoToolbar>
+				<items>
+					<ObjectListItem type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}" press="onSelectionChange" intro="{i18n>inspectionlot}"
+						title="{Prueflos}">
+						<!-- Extends the beginning of the master list item -->
+						<attributes>
+							<ObjectAttribute id="OrderNumber" text="{i18n>orderNumber} : {Aufnr}"/>
+						</attributes>
+						<attributes>
+							<ObjectAttribute id="ActivityNumber" text="{i18n>activityNumber} : {Vornr} - {Ltxa1}"/>
+						</attributes>
+						<attributes>
+							<ObjectAttribute id="MaterialNumber" text="{i18n>materialNumber} : {Matnr} - {Maktx}"/>
+						</attributes>
+					</ObjectListItem>
+				</items>
+			</List>
+		</semantic:content>
+	</semantic:MasterPage>
+</mvc:View>

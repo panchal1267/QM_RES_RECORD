@@ -1,0 +1,276 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZQM_INSPECTION_RESULTS_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="Openinspectionlist" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Prueflos"/>
+                    <PropertyRef Name="Vornr"/>
+                    <PropertyRef Name="Aufnr"/>
+                    <PropertyRef Name="Matnr"/>
+                </Key>
+                <Property Name="Prueflos" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Inspection Lot" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Werk" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vornr" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Activity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ltxa1" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Opr. short text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pastrterm" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Start date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Paendterm" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Insp. End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aufnr" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Arbpl" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Work center" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Charg" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Batch" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="InspectionDetail" Relationship="ZQM_INSPECTION_RESULTS_SRV.InspectionAssoc" FromRole="FromRole_InspectionAssoc" ToRole="ToRole_InspectionAssoc"/>
+                <NavigationProperty Name="ECNDetails" Relationship="ZQM_INSPECTION_RESULTS_SRV.ECNDetalilsAssoc" FromRole="FromRole_ECNDetalilsAssoc" ToRole="ToRole_ECNDetalilsAssoc"/>
+            </EntityType>
+            <EntityType Name="InspectionDetail" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Prueflos"/>
+                    <PropertyRef Name="Vornr"/>
+                    <PropertyRef Name="Merknr"/>
+                    <PropertyRef Name="Aufnr"/>
+                    <PropertyRef Name="Matnr"/>
+                </Key>
+                <Property Name="CodeGrpResult" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Code group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Prueflos" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Inspection Lot" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CodeResult" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Werk" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vornr" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Activity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ltxa1" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Opr. short text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Merknr" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Characteristic" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Kurztext" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Short text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pastrterm" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Start date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Paendterm" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Insp. End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aufnr" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Maktx" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Arbpl" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Work center" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ktext" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Charg" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Batch" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Shift" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Character Field Length = 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="DefectResult" Relationship="ZQM_INSPECTION_RESULTS_SRV.DefectResultAssoc" FromRole="FromRole_DefectResultAssoc" ToRole="ToRole_DefectResultAssoc"/>
+            </EntityType>
+            <EntityType Name="ResultCode" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Codegruppe"/>
+                    <PropertyRef Name="Code"/>
+                </Key>
+                <Property Name="Codegruppe" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Code group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Kurztext" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Short text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="DefectCode" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Codegruppe"/>
+                    <PropertyRef Name="Code"/>
+                </Key>
+                <Property Name="Codegruppe" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Code group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Kurztext" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Short text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="DefectLocCode" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Codegruppe"/>
+                    <PropertyRef Name="Code"/>
+                </Key>
+                <Property Name="Codegruppe" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Code group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Kurztext" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Short text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ECNDetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Matnr"/>
+                    <PropertyRef Name="Aennr"/>
+                </Key>
+                <Property Name="Aufnr" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WorkCenter" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Work center" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Maktx" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aennr" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Change Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aetxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Partno" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PartDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangeInd" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Chg status text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangeType" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangeReason" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Reason for chg" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Order" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Aufnr"/>
+                </Key>
+                <Property Name="Aufnr" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Order" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="Material" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Matnr"/>
+                </Key>
+                <Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Maktx" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Batch" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Charg"/>
+                </Key>
+                <Property Name="Charg" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Batch" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="WorkCenter" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Arbpl"/>
+                </Key>
+                <Property Name="Arbpl" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Work center" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Ktext" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="DefectResultAttach" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Prueflos"/>
+                    <PropertyRef Name="Werk"/>
+                    <PropertyRef Name="Vornr"/>
+                    <PropertyRef Name="Fenum"/>
+                    <PropertyRef Name="Aufnr"/>
+                    <PropertyRef Name="Matnr"/>
+                    <PropertyRef Name="Merknr"/>
+                </Key>
+                <Property Name="Prueflos" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Inspection Lot" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Werk" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vornr" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Activity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Fenum" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aufnr" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Merknr" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Characteristic" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mimetype" Type="Edm.String" Nullable="false" MaxLength="100" sap:label="Character 100" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Content" Type="Edm.Binary" Nullable="false" sap:label="Binary String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="DefectResult" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Fenum"/>
+                    <PropertyRef Name="Prueflos"/>
+                    <PropertyRef Name="Werk"/>
+                    <PropertyRef Name="Vornr"/>
+                    <PropertyRef Name="Aufnr"/>
+                    <PropertyRef Name="Matnr"/>
+                    <PropertyRef Name="Merknr"/>
+                </Key>
+                <Property Name="DefImage" Type="Edm.String" Nullable="false" sap:label="DEF_IMAGE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Fenum" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Prueflos" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Inspection Lot" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Werk" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vornr" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Activity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aufnr" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Merknr" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Characteristic" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pruefer" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Inspector" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Maschine" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Information" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CodeResult" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CodeGrpResult" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Code group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CodeDefect" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CodeGrpDefect" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Code group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CodeDefLoc" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CodeGrpDefLoc" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Code group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DefectQty" Type="Edm.String" Nullable="false" MaxLength="7" sap:label="No. of defects" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Attachment" Relationship="ZQM_INSPECTION_RESULTS_SRV.DefectResultAttachAssoc" FromRole="FromRole_DefectResultAttachAssoc" ToRole="ToRole_DefectResultAttachAssoc"/>
+            </EntityType>
+            <Association Name="ECNDetalilsAssoc" sap:content-version="1">
+                <End Type="ZQM_INSPECTION_RESULTS_SRV.Openinspectionlist" Multiplicity="1" Role="FromRole_ECNDetalilsAssoc"/>
+                <End Type="ZQM_INSPECTION_RESULTS_SRV.ECNDetails" Multiplicity="*" Role="ToRole_ECNDetalilsAssoc"/>
+            </Association>
+            <Association Name="InspectionAssoc" sap:content-version="1">
+                <End Type="ZQM_INSPECTION_RESULTS_SRV.Openinspectionlist" Multiplicity="1" Role="FromRole_InspectionAssoc"/>
+                <End Type="ZQM_INSPECTION_RESULTS_SRV.InspectionDetail" Multiplicity="*" Role="ToRole_InspectionAssoc"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_InspectionAssoc">
+                        <PropertyRef Name="Prueflos"/>
+                        <PropertyRef Name="Vornr"/>
+                        <PropertyRef Name="Matnr"/>
+                        <PropertyRef Name="Aufnr"/>
+                    </Principal>
+                    <Dependent Role="ToRole_InspectionAssoc">
+                        <PropertyRef Name="Prueflos"/>
+                        <PropertyRef Name="Vornr"/>
+                        <PropertyRef Name="Matnr"/>
+                        <PropertyRef Name="Aufnr"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="DefectResultAssoc" sap:content-version="1">
+                <End Type="ZQM_INSPECTION_RESULTS_SRV.InspectionDetail" Multiplicity="1" Role="FromRole_DefectResultAssoc"/>
+                <End Type="ZQM_INSPECTION_RESULTS_SRV.DefectResult" Multiplicity="*" Role="ToRole_DefectResultAssoc"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_DefectResultAssoc">
+                        <PropertyRef Name="Matnr"/>
+                        <PropertyRef Name="Aufnr"/>
+                        <PropertyRef Name="Prueflos"/>
+                        <PropertyRef Name="Vornr"/>
+                        <PropertyRef Name="Merknr"/>
+                    </Principal>
+                    <Dependent Role="ToRole_DefectResultAssoc">
+                        <PropertyRef Name="Matnr"/>
+                        <PropertyRef Name="Aufnr"/>
+                        <PropertyRef Name="Prueflos"/>
+                        <PropertyRef Name="Vornr"/>
+                        <PropertyRef Name="Merknr"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="DefectResultAttachAssoc" sap:content-version="1">
+                <End Type="ZQM_INSPECTION_RESULTS_SRV.DefectResult" Multiplicity="1" Role="FromRole_DefectResultAttachAssoc"/>
+                <End Type="ZQM_INSPECTION_RESULTS_SRV.DefectResultAttach" Multiplicity="*" Role="ToRole_DefectResultAttachAssoc"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_DefectResultAttachAssoc">
+                        <PropertyRef Name="Merknr"/>
+                        <PropertyRef Name="Matnr"/>
+                        <PropertyRef Name="Aufnr"/>
+                        <PropertyRef Name="Vornr"/>
+                        <PropertyRef Name="Werk"/>
+                        <PropertyRef Name="Prueflos"/>
+                        <PropertyRef Name="Fenum"/>
+                    </Principal>
+                    <Dependent Role="ToRole_DefectResultAttachAssoc">
+                        <PropertyRef Name="Merknr"/>
+                        <PropertyRef Name="Matnr"/>
+                        <PropertyRef Name="Aufnr"/>
+                        <PropertyRef Name="Vornr"/>
+                        <PropertyRef Name="Werk"/>
+                        <PropertyRef Name="Prueflos"/>
+                        <PropertyRef Name="Fenum"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZQM_INSPECTION_RESULTS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="OpeninspectionlistSet" EntityType="ZQM_INSPECTION_RESULTS_SRV.Openinspectionlist" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="InspectionDetailSet" EntityType="ZQM_INSPECTION_RESULTS_SRV.InspectionDetail" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ResultCodeSet" EntityType="ZQM_INSPECTION_RESULTS_SRV.ResultCode" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="DefectCodeSet" EntityType="ZQM_INSPECTION_RESULTS_SRV.DefectCode" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="DefectLocCodeSet" EntityType="ZQM_INSPECTION_RESULTS_SRV.DefectLocCode" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ECNDetailsSet" EntityType="ZQM_INSPECTION_RESULTS_SRV.ECNDetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="OrderSet" EntityType="ZQM_INSPECTION_RESULTS_SRV.Order" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MaterialSet" EntityType="ZQM_INSPECTION_RESULTS_SRV.Material" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="BatchSet" EntityType="ZQM_INSPECTION_RESULTS_SRV.Batch" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="WorkCenterSet" EntityType="ZQM_INSPECTION_RESULTS_SRV.WorkCenter" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="DefectResultAttachSet" EntityType="ZQM_INSPECTION_RESULTS_SRV.DefectResultAttach" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="DefectResultSet" EntityType="ZQM_INSPECTION_RESULTS_SRV.DefectResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="DefectResultAttachAssocSet" Association="ZQM_INSPECTION_RESULTS_SRV.DefectResultAttachAssoc" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DefectResultSet" Role="FromRole_DefectResultAttachAssoc"/>
+                    <End EntitySet="DefectResultAttachSet" Role="ToRole_DefectResultAttachAssoc"/>
+                </AssociationSet>
+                <AssociationSet Name="ECNDetalilsAssocSet" Association="ZQM_INSPECTION_RESULTS_SRV.ECNDetalilsAssoc" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="OpeninspectionlistSet" Role="FromRole_ECNDetalilsAssoc"/>
+                    <End EntitySet="ECNDetailsSet" Role="ToRole_ECNDetalilsAssoc"/>
+                </AssociationSet>
+                <AssociationSet Name="InspectionAssocSet" Association="ZQM_INSPECTION_RESULTS_SRV.InspectionAssoc" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="OpeninspectionlistSet" Role="FromRole_InspectionAssoc"/>
+                    <End EntitySet="InspectionDetailSet" Role="ToRole_InspectionAssoc"/>
+                </AssociationSet>
+                <AssociationSet Name="DefectResultAssoSet" Association="ZQM_INSPECTION_RESULTS_SRV.DefectResultAssoc" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="InspectionDetailSet" Role="FromRole_DefectResultAssoc"/>
+                    <End EntitySet="DefectResultSet" Role="ToRole_DefectResultAssoc"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZQM_INSPECTION_RESULTS_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZQM_INSPECTION_RESULTS_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

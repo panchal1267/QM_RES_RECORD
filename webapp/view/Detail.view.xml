@@ -1,0 +1,91 @@
+<mvc:View controllerName="com.sap.revgrp.controller.Detail" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:semantic="sap.m.semantic">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>detailTitle}"
+		busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
+		<semantic:content>
+			<ObjectHeader id="objectHeader" responsive="true" title="{i18n>inspectionlot} : {Prueflos}">
+				<attributes>
+					<ObjectAttribute text="{Werk} / {Matnr} / {Vornr} - {Ltxa1}"/>
+					<ObjectAttribute text="{i18n>orderNumber} : {Aufnr}"/>
+					<ObjectAttribute title="{i18n>StartDate}" text="{ path: 'Pastrterm', formatter: '.formatter.date' }" textDirection="RTL"/>
+					<ObjectAttribute title="{i18n>EndDate}" text="{ path: 'Paendterm', formatter: '.formatter.date'}" textDirection="RTL"/>
+				</attributes>
+			</ObjectHeader>
+			<IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter id="iconTabBarFilter1" icon="sap-icon://task" tooltip="{i18n>detailIconTabBarInfo}">
+						<Table id="InspectionDetailList" width="auto" items="{InspectionDetail}" noDataText="{i18n>ECNLineItemTableNoDataText}"
+							busyIndicatorDelay="{detailView>/lineItemTableDelay}" class="sapUiResponsiveMargin">
+							<columns>
+								<Column id="colCharacter" hAlign="Left" width="4em" demandPopin="true">
+									<Text text="{i18n>CharacNoIDColumn}"/>
+								</Column>
+								<Column id="shorttext" hAlign="Left" minScreenWidth="Tablet" demandPopin="true">
+									<Text text="{i18n>KurztextIDColumn}"/>
+								</Column>
+								<Column id="codeKey" hAlign="Left" minScreenWidth="Tablet" demandPopin="true">
+									<Text text="{i18n>CodeIDColumn}"/>
+								</Column>
+								<Column id="specsr" hAlign="Left" width="10em" demandPopin="true">
+									<Text text="{i18n>SpecificationIDColumn}"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem type="Navigation" press="onListItemPressed">
+									<cells>
+										<Text id="sCharNo" text="{Merknr}"/>
+										<Text id="sText" text="{Kurztext}"/>
+										<Text id="sCode" text="{CodeResult}"/>
+										<ComboBox id="ResultCodeCombo" items="{ path: '/ResultCodeSet', sorter: {path: 'Code'} }" selectionChange="OnSelectionChanged" selectedKey="9999">
+											<core:ListItem key="{Code}" text="{Kurztext}" additionalText="{Codegruppe}"/>
+										</ComboBox>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</IconTabFilter>
+					<IconTabFilter id="iconTabBarFilter2" icon="sap-icon://detail-view" tooltip="{i18n>detailIconTabBarECN}">
+						<Table id="ECNDetailsList" width="auto" items="{ECNDetails}" noDataText="{i18n>ECNLineItemTableNoDataText}"
+							busyIndicatorDelay="{detailView>/lineItemTableDelay}" class="sapUiResponsiveMargin">
+							<columns>
+								<Column id="ECNDetailscolAennr" hAlign="Left" width="8em" demandPopin="true">
+									<Text text="{i18n>AennrColumn}"/>
+								</Column>
+								<Column id="ECNDetailscolAetxt" hAlign="Left" minScreenWidth="Tablet" demandPopin="true">
+									<Text text="{i18n>AetxtColumn}"/>
+								</Column>
+								<Column id="ECNDetailscolPartDesc" hAlign="Left" minScreenWidth="Tablet" demandPopin="true">
+									<Text text="{i18n>PartDescColumn}"/>
+								</Column>
+								<Column id="ECNDetailscolChangeInd" hAlign="Left" minScreenWidth="Tablet" demandPopin="true">
+									<Text text="{i18n>ChangeIndColumn}"/>
+								</Column>
+								<Column id="ECNDetailscolChangeTypeColumn" hAlign="Left" minScreenWidth="Tablet" demandPopin="true">
+									<Text text="{i18n>ChangeTypeColumn}"/>
+								</Column>
+								<Column id="ECNDetailscolChangeReason" hAlign="Left" width="4em" demandPopin="true">
+									<Text text="{i18n>ChangeReasonColumn}"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text id="ECNDetailsAennr" text="{Aennr}"/>
+										<Text id="ECNDetailsAetxt" text="{Aetxt}"/>
+										<Text id="ECNDetailsPartDesc" text="{PartDesc}"/>
+										<Text id="ECNDetailsChangeInd" text="{ChangeInd}"/>
+										<Text id="ECNDetailsChangeType" text="{ChangeType}"/>
+										<Text id="ECNDetailsChangeReason" text="{ChangeReason}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</semantic:content>
+		<semantic:customFooterContent>
+			<!--<Button id="SaveRecordingData" type="Accept" text="Save" icon="sap-icon://save" press="onSaveButtonPressed"/>-->
+		</semantic:customFooterContent>
+	</semantic:DetailPage>
+</mvc:View>

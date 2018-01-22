@@ -1,0 +1,187 @@
+{
+    "_version": "1.3.0",
+    "sap.app": {
+        "_version": "1.3.0",
+        "id": "com.sap.revgrp",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZQM_INSPECTION_RESULTS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            }
+        },
+        "sourceTemplate": {
+            "id": "sap.ui.ui5-template-plugin.2masterdetail",
+            "version": "1.36.2"
+        }
+    },
+    "sap.ui": {
+        "_version": "1.3.0",
+        "technology": "UI5",
+        "icons": {
+            "icon": "sap-icon://detail-view",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_bluecrystal"
+        ]
+    },
+    "sap.ui5": {
+        "_version": "1.2.0",
+        "rootView": {
+            "viewName": "com.sap.revgrp.view.App",
+            "type": "XML",
+            "id": "app"
+        },
+        "dependencies": {
+            "minUI5Version": "1.36.0",
+            "libs": {
+                "sap.ui.core": {
+                    "minVersion": "1.36.0"
+                },
+                "sap.m": {
+                    "minVersion": "1.36.0"
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.sap.revgrp.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "settings": {
+                    "metadataUrlParams": {
+                        "sap-documentation": "heading"
+                    }
+                }
+            }
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "com.sap.revgrp.view",
+                "controlId": "idAppControl",
+                "controlAggregation": "detailPages",
+                "bypassed": {
+                    "target": [
+                        "master",
+                        "notFound"
+                    ]
+                },
+                "async": true
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "master",
+                    "target": [
+                        "object",
+                        "master"
+                    ]
+                },
+                {
+                    "pattern": "OpeninspectionlistSet/{objectId}/{Vornr}/{Aufnr}/{Matnr}",
+                    "name": "object",
+                    "target": [
+                        "master",
+                        "object"
+                    ]
+                },
+                {
+                    "pattern": "InspectionDetailSet/{Prueflos}/{Vornr}/{Merknr}/{Aufnr}/{Matnr}/DefectResult",
+                    "name": "defects",
+                    "target": "defectlist"
+                },
+                {
+                    "pattern": "DefectResultSet/{Fenum}/{Prueflos}/{Werk}/{Vornr}/{Merknr}/{Aufnr}/{Matnr}",
+                    "name": "addDefect",
+                    "target": "adddefect"
+                },
+                {
+                    "pattern": "OpeninspectionlistSet/{Prueflos}/{Vornr}/{Aufnr}/{Matnr}",
+                    "name": "masterlist",
+                    "target": [
+                        "object",
+                        "master"
+                    ]
+                },
+                {
+                    "pattern": "ResultCodeSet",
+                    "name": "resultCode",
+                    "target": [
+                        "object",
+                        "master"
+                    ]
+                }
+            ],
+            "targets": {
+                "master": {
+                    "viewName": "Master",
+                    "viewLevel": 1,
+                    "viewId": "master",
+                    "controlAggregation": "masterPages"
+                },
+                "object": {
+                    "viewName": "Detail",
+                    "viewId": "detail",
+                    "viewLevel": 2
+                },
+                "defectlist": {
+                    "viewName": "Defectlist",
+                    "viewId": "defects",
+                    "viewLevel": 3
+                },
+                "adddefect": {
+                    "viewName": "AddDefect",
+                    "viewId": "adddefect",
+                    "viewLevel": 4
+                },
+                "detailObjectNotFound": {
+                    "viewName": "DetailObjectNotFound",
+                    "viewId": "detailObjectNotFound"
+                },
+                "detailNoObjectsAvailable": {
+                    "viewName": "DetailNoObjectsAvailable",
+                    "viewId": "detailNoObjectsAvailable"
+                },
+                "notFound": {
+                    "viewName": "NotFound",
+                    "viewId": "notFound"
+                }
+            }
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/zqm_res_record",
+        "_version": "1.1.0"
+    }
+}
